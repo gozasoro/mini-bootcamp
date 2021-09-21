@@ -38,7 +38,6 @@ group :development do
   gem "web-console", ">= 4.1.0"
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem "letter_opener_web"
   gem "listen", "~> 3.3"
   gem "rack-mini-profiler", "~> 2.0"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -48,6 +47,8 @@ group :development do
   gem "rubocop-packaging", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
+  gem "letter_opener_web"
+  gem "pry-byebug"
 end
 
 group :test do
