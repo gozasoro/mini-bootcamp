@@ -9,4 +9,9 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   body
+    - if logged_in?
+      = link_to "Sign Out", "/logout", class: "button", method: :delete
+      = current_user.id
+    - else
+      = link_to "Login", "/auth/github", class: "button", method: :post
     = yield

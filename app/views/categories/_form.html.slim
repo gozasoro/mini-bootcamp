@@ -1,0 +1,33 @@
+= form_for @category do |f|
+  .columns.is-centered
+    .column.is-6
+      - if @category.errors.any?
+        .notification.is-danger.is-light
+          ul
+            - @category.errors.full_messages.each do |message|
+              li = message
+      .field
+        = f.label :name, class: "label"
+        .control
+          = f.text_field :name, class: "input", placeholder: "ruby"
+      .columns
+        .column
+          .field
+            = f.label :docker_image, class: "label"
+            .control
+              = f.text_field :docker_image, class: "input", placeholder: "ruby:3.0.2"
+        .column
+          .field
+            = f.label :editor_mode, class: "label editor-mode-label"
+            .control
+              .select
+                = f.select :editor_mode, options_for_select(Category::EDITOR_MODES, selected: @category.editor_mode)
+      .field
+        = f.label :command, "コード実行コマンド", class: "label"
+        .command-field
+          = f.text_field :command, class: "command-input", placeholder: "ruby", size: "7"
+          span.command-input.ml-2 code.
+          = f.text_field :extension, class: "command-input", placeholder: "rb", size: "5"
+      .field
+        .control
+          = f.submit class: "button is-primary is-fullwidth"

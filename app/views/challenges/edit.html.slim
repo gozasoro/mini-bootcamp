@@ -1,0 +1,15 @@
+section.section
+  .container
+    nav.breadcrumb.is-small aria-label="breadcrumbs"
+      ul
+        li = link_to "Home", root_path
+        li = link_to "#{@category.name}", category_challenges_path(@category)
+        li.is-active
+          a aria-current="page" = @challenge.title
+    h1.title.is-3.has-text-centered.mb-3
+      = @challenge.title
+    = render "form"
+    .columns.is-centered.mt-2
+      .column.is-flex.is-justify-content-space-between
+        = link_to "もどる", category_challenges_path(@category), class: "is-size-7"
+        = link_to 'チャレンジを削除する', category_challenge_path(@category), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "has-text-danger is-size-7"

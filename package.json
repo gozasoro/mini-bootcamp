@@ -2,20 +2,27 @@
   "name": "mini-bootcamp",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
-    "@vue/compiler-sfc": "^3.2.12",
-    "pug": "^3.0.2",
-    "pug-plain-loader": "^1.1.0",
-    "vue": "^3.2.12",
-    "vue-loader": "^16.6.0",
+    "ace-builds": "^1.4.13",
+    "axios": "^0.25.0",
+    "bulma": "^0.9.3",
+    "cocoon-js-vanilla": "^1.2.0",
+    "sortablejs": "^1.14.0",
+    "spinkit": "^2.0.1",
+    "vue": "^3.2.26",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.26",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
+    "vue-loader": "^17.0.0",
     "webpack-dev-server": "^3"
   }
 }

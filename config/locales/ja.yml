@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      category: カテゴリ
+      challenge: チャレンジ
+    attributes:
+      category:
+        name: カテゴリ名
+        docker_image: Docker image
+        editor_mode: エディターモード
+        command: コマンド
+        extension: 拡張子
+        row_order: 並び順
+      challenge:
+        challenges: チャレンジ
+        title: タイトル
+        content: 問題文
+        model_answer: 模範解答
+        row_order: 並び順
+        checks: チェック
+      challenge/checks:
+        stdin: 標準入力
+        stdout: 標準出力
+      checks:
+        stdin: 標準入力
+        stdout: 標準出力

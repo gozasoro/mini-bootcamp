@@ -1,0 +1,28 @@
+= form_with model: [@category, @challenge] do |f|
+  - if @challenge.errors.any?
+    notification.is-danger.is-light
+      ul
+        - @challenge.errors.full_messages.each do |message|
+          li = message
+  .columns
+    .field.column.is-6
+      = f.label :title, class: "label"
+      .control
+        = f.text_field :title, class: "input", placeholder: "FizzBuzz問題"
+  .columns
+    .field.column.is-6
+      = f.label :content, class: "label"
+      .control
+        = f.text_area :content, class: "textarea has-fixed-size", rows: 15
+    .field.column.is-6
+      = f.label :model_answer, class: "label"
+      .control
+        = f.text_area :model_answer, class: "textarea has-fixed-size", rows: 15
+  .field
+    = f.fields_for :checks do |check|
+      = render "check_fields", f: check
+    .links
+      = link_to_add_association "add check", f, :checks
+  .field
+    .control
+      .actions = f.submit class: "button is-primary"

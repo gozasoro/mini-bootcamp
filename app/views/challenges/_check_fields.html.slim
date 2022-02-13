@@ -1,0 +1,10 @@
+.nested-fields
+  .field
+    = f.label :stdin, class: "label"
+    .control
+      = f.text_field :stdin, class: "input"
+  .field
+    = f.label :stdout, class: "label"
+    .control
+      = f.text_field :stdout, class: "input"
+  = link_to_remove_association "remove check", f

@@ -1,0 +1,29 @@
+section.section
+  .container
+    nav.breadcrumb.is-small aria-label="breadcrumbs"
+      ul
+        li = link_to "Home", root_path
+        li.is-active
+          a aria-current="page" = @category.name
+    h1.title.is-3.has-text-centered
+      = @category.name
+    .content
+      table.table
+        thead
+          tr
+            th = Challenge.human_attribute_name(:title)
+            th
+        tbody#js-sortable data-model="challenges"
+          - @challenges.each do |challenge|
+            tr.item data-id="#{challenge.id}"
+              td
+                = link_to category_challenge_path(@category, challenge) do
+                  = challenge.title
+              td
+                = link_to edit_category_challenge_path(@category, challenge), class: "button is-small" do
+                  i.fas.fa-pen
+          tr.has-text-centered
+            td colspan="100%"
+              = link_to new_category_challenge_path(@category) do
+                i.fas.fa-plus-circle.mr-1
+                | 新規チャレンジ

@@ -1,0 +1,36 @@
+section.section
+  .container
+    nav.breadcrumb.is-small aria-label="breadcrumbs"
+      ul
+        li.is-active
+          a aria-current="page" Home
+    h1.title.is-3.has-text-centered.mb-3
+      | カテゴリ一覧
+    table.table.mx-auto
+      thead
+        tr
+          th = Category.human_attribute_name(:name)
+          th = Category.human_attribute_name(:docker_image)
+          th コード実行コマンド
+          th
+      tbody#js-sortable data-model="categories"
+        - @categories.each do |category|
+          tr.item data-id="#{category.id}"
+            td
+              = link_to category_challenges_path(category) do
+                = category.name
+            td
+              .tag.is-info.is-light = category.docker_image
+            td
+              code
+                = category.command
+                |  code.
+                = category.extension
+            td
+              = link_to edit_category_path(category), class: "button is-small" do
+                i.fas.fa-pen
+        tr.has-text-centered
+          td colspan="100%"
+            = link_to new_category_path do
+              i.fas.fa-plus-circle.mr-1
+              | 新規カテゴリ
