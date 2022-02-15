@@ -6,8 +6,8 @@ class Api::ChallengesController < Api::BaseController
   end
 
   def update
-      @challenge = Challenge.find(params[:id])
-      if @challenge.update(challenge_params)
+    @challenge = Challenge.find(params[:id])
+    if @challenge.update(challenge_params)
       head :created
     else
       render json: { messages: @challenge.errors.full_messages }, status: :unprocessable_entity

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.(@challenge, :title, :content)
 json.checks @challenge.checks, :id, :stdin, :stdout
 json.mode @challenge.category.editor_mode

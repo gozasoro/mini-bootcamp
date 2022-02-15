@@ -12,7 +12,7 @@ class Challenge < ApplicationRecord
   validates :content, presence: true
   validates :model_answer, presence: true
 
-  validates :checks, presence: true, length: { in: 1..10, too_long: "は最大10個までです", too_short: "は1個以上必要です"}
+  validates :checks, presence: true, length: { in: 1..10, too_long: "は最大10個までです", too_short: "は1個以上必要です" }
 
   def previous
     Challenge.rank(:row_order).all.where("row_order < ? AND category_id = ?", row_order, category_id).reverse.first
