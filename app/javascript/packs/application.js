@@ -7,7 +7,7 @@ import Rails from '@rails/ujs'
 import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 
-import '../challengescreen'
+import '../challenge'
 import '../navbar'
 import '../sort_categories'
 import '../resize_textarea'

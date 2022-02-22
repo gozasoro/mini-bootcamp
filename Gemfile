@@ -25,6 +25,7 @@ gem "jbuilder", "~> 2.7"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem "docker-api"
 gem "slim-rails"
 gem "rails-i18n", "~> 6.0"
 gem "ranked-model"

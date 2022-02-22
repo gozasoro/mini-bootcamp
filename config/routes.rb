@@ -3,7 +3,10 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: "json" } do
     resources :categories, only: %i(update)
-    resources :challenges, only: %i(show update)
+    resources :challenges, only: %i(show update) do
+      post "/run", to: "challenges#run"
+      post "/judge", to: "challenges#judge"
+    end
   end
   resources :categories, expect: %i(show) do
     resources :challenges

@@ -2,9 +2,9 @@
   .field
     = f.label :stdin, class: "label"
     .control
-      = f.text_field :stdin, class: "input"
+      = f.text_area :stdin, class: "textarea"
   .field
     = f.label :stdout, class: "label"
     .control
-      = f.text_field :stdout, class: "input"
+      = f.text_area :stdout, class: "textarea"
   = link_to_remove_association "remove check", f
