@@ -8,7 +8,6 @@ import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 
 import '../challenge'
-import '../navbar'
 import '../sort_categories'
 import '../resize_textarea'
 

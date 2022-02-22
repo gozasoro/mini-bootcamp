@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       post "/judge", to: "challenges#judge"
     end
   end
-  resources :categories, expect: %i(show) do
+  resources :categories, except: %i(show) do
     resources :challenges
   end
 
