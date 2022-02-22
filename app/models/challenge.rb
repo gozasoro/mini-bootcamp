@@ -3,6 +3,7 @@
 class Challenge < ApplicationRecord
   belongs_to :category
   has_many :checks, dependent: :destroy, inverse_of: :challenge
+  has_many :archivements, dependent: :destroy
   accepts_nested_attributes_for :checks, reject_if: :all_blank, allow_destroy: true
 
   include RankedModel
@@ -20,5 +21,9 @@ class Challenge < ApplicationRecord
 
   def next
     Challenge.rank(:row_order).all.where("row_order > ? AND category_id = ?", row_order, category_id).first
+  end
+
+  def has_archivement?(user)
+    user ? self.archivements.where(user_id: user.id).exists? : nil
   end
 end

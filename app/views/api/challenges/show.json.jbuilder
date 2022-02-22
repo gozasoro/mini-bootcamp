@@ -4,6 +4,8 @@ json.(@challenge, :title, :content)
 json.checks @challenge.checks, :id, :stdin, :stdout
 json.mode @challenge.category.editor_mode
 
+json.archivement @challenge.has_archivement?(current_user)
+
 json.previous do
   if record = @challenge.previous
     json.title record.title

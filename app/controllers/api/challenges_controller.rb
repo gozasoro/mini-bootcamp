@@ -82,6 +82,7 @@ class Api::ChallengesController < Api::BaseController
           @result.push this_result
         end
 
+        @challenge.archivements.create!(user_id: current_user.id) if logged_in? && @challenge_success && @challenge.archivements.where(user_id: current_user.id).empty?
       ensure
         container.stop if container
         file.close

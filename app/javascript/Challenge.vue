@@ -1,5 +1,12 @@
 <template lang="pug">
-h1.title.is-3.has-text-centered {{ challenge.title }}
+p.is-size-6.has-text-centered
+  span.has-text-success(v-if="challenge.archivement")
+    i.fas.fa-medal.mr-1
+    | 達成済
+  span.has-text-grey(v-else)
+    | 未クリア
+h1.title.is-3.has-text-centered
+  | {{ challenge.title }}
 .columns
   .column(style="white-space: pre-wrap")
     | {{ challenge.content }}
@@ -118,7 +125,8 @@ export default {
     const challenge = reactive({
       title: '',
       content: '',
-      checks: []
+      checks: [],
+      archivement: null
     })
     const previous = reactive({
       title: null,
@@ -136,6 +144,7 @@ export default {
 
       challenge.title = data.title
       challenge.content = data.content
+      challenge.archivement = data.archivement
       previous.title = data.previous ? data.previous.title : null
       previous.url = data.previous ? data.previous.url : null
       next.title = data.next ? data.next.title : null
