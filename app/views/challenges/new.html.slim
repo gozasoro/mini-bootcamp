@@ -1,11 +1,5 @@
 section.section
   .container
-    nav.breadcrumb.is-small aria-label="breadcrumbs"
-      ul
-        li = link_to "Home", root_path
-        li = link_to "#{@category.name}", category_challenges_path(@category)
-        li.is-active
-          a aria-current="page" 新規チャレンジ
     h1.title.is-3.has-text-centered
       | 新規チャレンジ
     .block

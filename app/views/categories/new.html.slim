@@ -1,11 +1,5 @@
 section.section
   .container
-    nav.breadcrumb.is-small aria-label="breadcrumbs"
-      ul
-        li = link_to "Home", root_path
-        li = link_to "チャレンジ一覧", categories_path
-        li.is-active
-          a aria-current="page" 新規カテゴリ
     h1.title.is-3.has-text-centered.mb-3
       | 新規カテゴリ
     = render "form"
