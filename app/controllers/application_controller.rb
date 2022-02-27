@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :authenticate_user
 
   private
     def current_user
@@ -10,5 +10,9 @@ class ApplicationController < ActionController::Base
 
     def logged_in?
       !!session[:user_id]
+    end
+
+    def authenticate_user
+      redirect_to root_path unless logged_in?
     end
 end

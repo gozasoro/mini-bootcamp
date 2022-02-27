@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  resources :users, only: %i(destroy)
 
   root "categories#index"
 end

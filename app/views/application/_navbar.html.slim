@@ -1,0 +1,27 @@
+.title-bar.section
+  .container
+    nav.level
+      .level-left
+        .level-item
+          = link_to "Mini Bootcamp", root_path, class: "logo"
+      .level-right
+        - if logged_in?
+          .level-item
+            figure.image.is-32x32.mr-2
+              = image_tag current_user.image_url, class: "is-rounded"
+            .dropdown.is-hoverable.is-right
+              .dropdown-trigger
+                button.button.is-small(aria-haspopup="true" aria-controls="dropdown-menu")
+                  span = "#{current_user.name}でログイン中"
+                  span.icon.is-small
+                    i.fas.fa-caret-down(aria-hidden="true")
+              .dropdown-menu(id="dropdown-menu" role="menu")
+                .dropdown-content
+                  = link_to "ログアウト", "/logout", class: "dropdown-item has-text-danger", method: :delete
+                  hr.dropdown-divider
+                  = link_to "GitHub連携解除", user_path(current_user), data: { confirm: "GitHub連携を解除しユーザーを削除します。もう一度登録した場合でもチャレンジ達成率などはリセットされます。" }, class: "dropdown-item has-text-danger", method: :delete
+        - else
+          = link_to "/auth/github", class: "button is-primary is-small", method: :post do
+            span.icon.is-small
+              i.fab.fa-github
+            span GitHubでログイン

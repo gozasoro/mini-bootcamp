@@ -33,6 +33,28 @@ $progress-bar-background-color: white;
 @import "bulma/sass/layout/_all";
 
 @import "@fortawesome/fontawesome-free/css/all.css";
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+.title-bar.section {
+  padding-bottom: 0;
+
+  .container {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    background: wheat;
+
+    .logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 32px;
+      color: #6a6967;
+    }
+
+    .image img {
+      border: 1px solid white;
+    }
+  }
+}
+
 
 code {
   background: $code-background;

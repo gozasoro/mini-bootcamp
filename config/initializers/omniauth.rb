@@ -2,7 +2,7 @@
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   if Rails.env.development? || Rails.env.test?
-    provider :github, ENV["DEV_CLIENT_ID"], ENV["DEV_CLIENT_SECRET"], scope: "read:user"
+    provider :github, Rails.application.credentials.dev[:client_id], Rails.application.credentials.dev[:client_secret], scope: "read:user"
   else
     provider :github,
       Rails.application.credentials.github[:client_id],
