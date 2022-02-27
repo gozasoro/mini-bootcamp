@@ -21,6 +21,6 @@ ja:
       challenge/checks:
         stdin: 標準入力
         stdout: 標準出力
-      checks:
+      check:
         stdin: 標準入力
         stdout: 標準出力

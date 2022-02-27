@@ -11,5 +11,5 @@ section.section
     = render "form"
     .columns.is-centered.mt-2
       .column.is-flex.is-justify-content-space-between
-        = link_to "もどる", category_challenges_path(@category), class: "is-size-7"
+        = link_to "もどる", root_path, class: "is-size-7"
         = link_to 'チャレンジを削除する', category_challenge_path(@category), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "has-text-danger is-size-7"

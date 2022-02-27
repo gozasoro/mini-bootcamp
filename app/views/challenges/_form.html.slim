@@ -18,11 +18,14 @@
       = f.label :model_answer, class: "label"
       .control
         = f.text_area :model_answer, class: "textarea has-fixed-size", rows: 15
-  .field
+  .columns
     = f.fields_for :checks do |check|
       = render "check_fields", f: check
-    .links
-      = link_to_add_association "add check", f, :checks
+    .column.is-3
+      = link_to_add_association f, :checks, class: "new check" do
+        i.fas.fa-plus-circle.mr-1
+        | チェックを追加
   .field
-    .control
-      .actions = f.submit class: "button is-primary"
+    .control.columns.is-centered
+      .column.is-4
+        .actions = f.submit class: "button is-primary is-fullwidth"

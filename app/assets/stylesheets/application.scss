@@ -187,7 +187,7 @@ hr {
       align-items: center;
       font-size: 1.25rem;
       margin-bottom: 0;
-      line-height: 2.5em;
+      line-height: 3rem;
       padding-left: 21px;
       flex-grow: 1;
     }
@@ -218,5 +218,34 @@ hr {
       }
     }
   }
+}
 
+.nested-fields {
+  .check {
+    background : whitesmoke;
+    padding: 1rem;
+    position: relative;
+    border-radius: 4px;
+  }
+
+  .delete {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+.new.check {
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: darkgray;
+  border: 1px dashed;
+  width: 100%;
+  height: 100%;
+  &:hover {
+    color: dimgray;
+    border: 1px dashed;
+  }
 }
