@@ -8,7 +8,7 @@ import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 
 import '../challenge'
-import '../sort_categories'
+import '../sortable'
 import '../resize_textarea'
 
 import 'cocoon-js-vanilla'

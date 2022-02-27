@@ -4,33 +4,40 @@ section.section
       ul
         li.is-active
           a aria-current="page" Home
-    h1.title.is-3.has-text-centered.mb-3
-      | カテゴリ一覧
-    table.table.mx-auto
-      thead
-        tr
-          th = Category.human_attribute_name(:name)
-          th = Category.human_attribute_name(:docker_image)
-          th コード実行コマンド
-          th
-      tbody#js-sortable data-model="categories"
-        - @categories.each do |category|
-          tr.item data-id="#{category.id}"
-            td
-              = link_to category_challenges_path(category) do
-                = category.name
-            td
-              .tag.is-info.is-light = category.docker_image
-            td
-              code
-                = category.command
-                |  code.
-                = category.extension
-            td
-              = link_to edit_category_path(category), class: "button is-small" do
+    h1.title.is-3.has-text-centered.mb-5
+      | チャレンジ一覧
+    .columns.is-multiline.is-variable.is-6.is-centered.js-sortable data-model="categories"
+      - @categories.each do |category|
+        - challenge_count = category.challenges.size
+        - archivement_count = category.challenges.select{ |c| c.has_archivement?(current_user) }.size
+        .column.is-4.item data-id="#{category.id}"
+          .category.content
+            .header.handle
+              h3.name = category.name
+              .status.is-size-7
+                = "全#{challenge_count}問中#{archivement_count}問クリア"
+                progress.progress.is-success.is-small value="#{archivement_count}" max="#{challenge_count}"
+              = link_to edit_category_path(category), class: "button is-small is-ghost" do
                 i.fas.fa-pen
-        tr.has-text-centered
-          td colspan="100%"
-            = link_to new_category_path do
-              i.fas.fa-plus-circle.mr-1
-              | 新規カテゴリ
+            .body
+              ul.challenges.js-sortable data-model="challenges"
+                - category.challenges.rank(:row_order).each do |challenge|
+                  li.item data-id="#{challenge.id}"
+                    = link_to category_challenge_path(category, challenge) do
+                      = challenge.title
+                    - if challenge.has_archivement?(current_user)
+                      i.fas.fa-check.is-size-7.has-text-success.ml-2
+                    .buttons
+                      button.button.is-light.is-small.handle
+                        span.icon.is-small
+                          i.fas.fa-arrows-alt-v
+                      = link_to edit_category_challenge_path(category, challenge), class: "button is-small" do
+                        i.fas.fa-pen
+              .has-text-centered.mt-2
+                = link_to new_category_challenge_path(category), class: "button is-small" do
+                  i.fas.fa-plus-circle.mr-1
+                  | 新規チャレンジ
+      .column.is-4
+        = link_to new_category_path, class: "new category" do
+          i.fas.fa-plus-circle.mr-1
+          | 新規カテゴリ

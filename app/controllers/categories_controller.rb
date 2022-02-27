@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i(edit update destroy)
 
   def index
-    @categories = Category.rank(:row_order).all
+    @categories = Category.preload(:challenges).rank(:row_order).all
   end
 
   def new

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, except: %i(show) do
-    resources :challenges
+    resources :challenges, except: %i(index)
   end
 
   get "/auth/:provider/callback", to: "sessions#create"
