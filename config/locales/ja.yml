@@ -2,7 +2,7 @@ ja:
   activerecord:
     models:
       category: カテゴリ
-      challenge: チャレンジ
+      challenge: プログラミングテスト
     attributes:
       category:
         name: カテゴリ名
@@ -12,7 +12,7 @@ ja:
         extension: 拡張子
         row_order: 並び順
       challenge:
-        challenges: チャレンジ
+        challenges: プログラミングテスト
         title: タイトル
         content: 問題文
         model_answer: 模範解答

@@ -11,4 +11,8 @@ class Api::BaseController < ApplicationController
     def authenticate_user_for_api
       head :unauthorized unless logged_in?
     end
+
+    def authenticate_admin_for_api
+      head :unauthorized unless logged_in? && current_user.admin?
+    end
 end

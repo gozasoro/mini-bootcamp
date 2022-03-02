@@ -50,6 +50,7 @@ $progress-bar-background-color: white;
   .container {
     max-width: 720px;
     padding: 3rem;
+    background: wheat;
   }
 }
 
@@ -72,6 +73,11 @@ $progress-bar-background-color: white;
       border: 1px solid white;
     }
   }
+}
+
+.challenges.title {
+  border-left: 8px solid wheat;
+  padding-left: 0.5rem;
 }
 
 

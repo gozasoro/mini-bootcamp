@@ -1,20 +1,21 @@
 section.section
   .container
-    h1.title.is-3.has-text-centered.mb-5
-      | チャレンジ一覧
+    h1.challenges.title.is-4.mb-5
+      | プログラミングテスト一覧
     .columns.is-multiline.is-variable.is-6.is-centered.js-sortable data-model="categories"
       - @categories.each do |category|
         - challenge_count = category.challenges.size
         - archivement_count = category.challenges.select{ |c| c.has_archivement?(current_user) }.size
         .column.is-4.item data-id="#{category.id}"
           .category.content
-            .header.handle
+            .header class="#{"handle" if current_user.admin?}"
               h3.name = category.name
               .status.is-size-7
                 = "全#{challenge_count}問中#{archivement_count}問クリア"
                 progress.progress.is-success.is-small value="#{archivement_count}" max="#{challenge_count}"
-              = link_to edit_category_path(category), class: "button is-small is-ghost" do
-                i.fas.fa-pen
+              - if current_user.admin?
+                = link_to edit_category_path(category), class: "button is-small is-ghost" do
+                  i.fas.fa-pen
             .body
               ul.challenges.js-sortable data-model="challenges"
                 - category.challenges.rank(:row_order).each do |challenge|
@@ -23,17 +24,20 @@ section.section
                       = challenge.title
                     - if challenge.has_archivement?(current_user)
                       i.fas.fa-check.is-size-7.has-text-success.ml-2
-                    .buttons
-                      button.button.is-light.is-small.handle
-                        span.icon.is-small
-                          i.fas.fa-arrows-alt-v
-                      = link_to edit_category_challenge_path(category, challenge), class: "button is-small" do
-                        i.fas.fa-pen
-              .has-text-centered.mt-2
-                = link_to new_category_challenge_path(category), class: "button is-small" do
-                  i.fas.fa-plus-circle.mr-1
-                  | 新規チャレンジ
-      .column.is-4
-        = link_to new_category_path, class: "new category" do
-          i.fas.fa-plus-circle.mr-1
-          | 新規カテゴリ
+                    - if current_user.admin?
+                      .buttons
+                        button.button.is-light.is-small.handle
+                          span.icon.is-small
+                            i.fas.fa-arrows-alt-v
+                        = link_to edit_category_challenge_path(category, challenge), class: "button is-small" do
+                          i.fas.fa-pen
+              - if current_user.admin?
+                .has-text-centered.mt-2
+                  = link_to new_category_challenge_path(category), class: "button is-small" do
+                    i.fas.fa-plus-circle.mr-1
+                    | 新規プログラミングテスト
+      - if current_user.admin?
+        .column.is-4
+          = link_to new_category_path, class: "new category" do
+            i.fas.fa-plus-circle.mr-1
+            | 新規カテゴリ

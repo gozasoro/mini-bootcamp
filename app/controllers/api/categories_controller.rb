@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::CategoriesController < Api::BaseController
+  before_action :authenticate_admin_for_api
+
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::ChallengesController < Api::BaseController
+  before_action :authenticate_user_for_api
+  before_action :authenticate_admin_for_api, only: %i(update)
   before_action :set_category_and_challenge, only: %i(run judge)
 
   DOCKER_DIR_PATH = Rails.root.join("tmp/docker").freeze

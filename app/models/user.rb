@@ -14,4 +14,8 @@ class User < ApplicationRecord
       user.image_url = image_url
     end
   end
+
+  def admin?
+    Rails.application.credentials.admin.present? && Rails.application.credentials.admin.split(",").include?(name)
+  end
 end
