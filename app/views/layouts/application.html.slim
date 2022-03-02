@@ -9,5 +9,5 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   body
-    = render "navbar"
+    = render "navbar" unless controller.controller_name == "sessions"
     = yield

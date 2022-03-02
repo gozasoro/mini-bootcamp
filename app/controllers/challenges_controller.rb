@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ChallengesController < ApplicationController
+  before_action :authenticate_user
   before_action :set_category, only: %i(index new create)
   before_action :set_category_and_challenge, only: %i(show edit update destroy)
 

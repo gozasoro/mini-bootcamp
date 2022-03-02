@@ -35,6 +35,25 @@ $progress-bar-background-color: white;
 @import "@fortawesome/fontawesome-free/css/all.css";
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
+.login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  .logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 32px;
+    color: #6a6967;
+    margin-bottom: 1rem;
+  }
+
+  .container {
+    max-width: 720px;
+    padding: 3rem;
+  }
+}
+
+
 .title-bar.section {
   padding-bottom: 0;
 
@@ -45,7 +64,7 @@ $progress-bar-background-color: white;
 
     .logo {
       font-family: 'Fredoka One', cursive;
-      font-size: 32px;
+      font-size: 24px;
       color: #6a6967;
     }
 

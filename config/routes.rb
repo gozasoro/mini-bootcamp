@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :challenges, except: %i(index)
   end
 
+  get "/login", to: "sessions#new"
   get "/auth/:provider/callback", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   resources :users, only: %i(destroy)
