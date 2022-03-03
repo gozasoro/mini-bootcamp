@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to categories_url, notice: "カテゴリを登録しました。"
+      redirect_to root_path, notice: "カテゴリを登録しました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to categories_url, notice: "カテゴリを更新しました。"
+      redirect_to root_path, notice: "カテゴリを更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     if @category.destroy
-      redirect_to categories_url, notice: "カテゴリを削除しました。"
+      redirect_to root_path, notice: "カテゴリを削除しました。"
     else
       render :edit, status: :unprocessable_entity
     end

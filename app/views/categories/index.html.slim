@@ -8,13 +8,13 @@ section.section
         - archivement_count = category.challenges.select{ |c| c.has_archivement?(current_user) }.size
         .column.is-4.item data-id="#{category.id}"
           .category.content
-            .header class="#{"handle" if current_user.admin?}"
+            .header class="#{"handle" if current_user.admin}"
               h3.name = category.name
               .status.is-size-7
                 = "全#{challenge_count}問中#{archivement_count}問クリア"
                 progress.progress.is-success.is-small value="#{archivement_count}" max="#{challenge_count}"
-              - if current_user.admin?
-                = link_to edit_category_path(category), class: "button is-small is-ghost" do
+              - if current_user.admin
+                = link_to edit_category_path(category), class: "button is-small is-ghost edit" do
                   i.fas.fa-pen
             .body
               ul.challenges.js-sortable data-model="challenges"
@@ -24,19 +24,19 @@ section.section
                       = challenge.title
                     - if challenge.has_archivement?(current_user)
                       i.fas.fa-check.is-size-7.has-text-success.ml-2
-                    - if current_user.admin?
+                    - if current_user.admin
                       .buttons
                         button.button.is-light.is-small.handle
                           span.icon.is-small
                             i.fas.fa-arrows-alt-v
-                        = link_to edit_category_challenge_path(category, challenge), class: "button is-small" do
+                        = link_to edit_category_challenge_path(category, challenge), class: "button is-small edit" do
                           i.fas.fa-pen
-              - if current_user.admin?
+              - if current_user.admin
                 .has-text-centered.mt-2
                   = link_to new_category_challenge_path(category), class: "button is-small" do
                     i.fas.fa-plus-circle.mr-1
                     | 新規プログラミングテスト
-      - if current_user.admin?
+      - if current_user.admin
         .column.is-4
           = link_to new_category_path, class: "new category" do
             i.fas.fa-plus-circle.mr-1

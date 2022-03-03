@@ -20,3 +20,8 @@ github:
 ```
 admin: foo,bar #複数設定する場合はカンマで区切る
 ```
+記載されている場合、ユーザー登録時にUserモデルの`admin`カラムが`true`になります。
+- 登録後に管理者に設定
+`bin/rake "admin:add[username]"`
+- 管理者から削除
+`bin/rake "admin:remove[username]"`

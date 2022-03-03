@@ -11,6 +11,7 @@ ja:
         command: コマンド
         extension: 拡張子
         row_order: 並び順
+        challenges: プログラミングテスト
       challenge:
         challenges: プログラミングテスト
         title: タイトル

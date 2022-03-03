@@ -13,6 +13,6 @@ class Api::BaseController < ApplicationController
     end
 
     def authenticate_admin_for_api
-      head :unauthorized unless logged_in? && current_user.admin?
+      head :unauthorized unless logged_in? && current_user.admin
     end
 end

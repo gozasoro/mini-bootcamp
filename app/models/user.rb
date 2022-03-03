@@ -12,10 +12,7 @@ class User < ApplicationRecord
     User.find_or_create_by!(provider: provider, uid: uid) do |user|
       user.name = nickname
       user.image_url = image_url
+      user.admin = Rails.application.credentials.admin.present? && Rails.application.credentials.admin.split(",").include?(user.name)
     end
-  end
-
-  def admin?
-    Rails.application.credentials.admin.present? && Rails.application.credentials.admin.split(",").include?(name)
   end
 end

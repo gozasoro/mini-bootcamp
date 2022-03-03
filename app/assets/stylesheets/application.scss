@@ -35,6 +35,17 @@ $progress-bar-background-color: white;
 @import "@fortawesome/fontawesome-free/css/all.css";
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
+.alert {
+  width: 100%;
+  color: white;
+  text-align: center;
+  line-height: 1.5rem;
+
+  &+.login {
+    height: calc(100vh - 1.5rem);
+  }
+}
+
 .login {
   height: 100vh;
   display: flex;

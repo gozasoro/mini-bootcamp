@@ -13,10 +13,10 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_user
-      redirect_to login_path notice: "ログインしてください。" unless logged_in?
+      redirect_to login_path, notice: "ログインしてください。" unless logged_in?
     end
 
     def authenticate_admin
-      redirect_to root_path unless logged_in? && current_user.admin?
+      redirect_to root_path unless logged_in? && current_user.admin
     end
 end
