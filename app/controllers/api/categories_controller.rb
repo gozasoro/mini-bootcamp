@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::CategoriesController < Api::BaseController
+class API::CategoriesController < API::BaseController
   before_action :authenticate_admin_for_api
 
   def update

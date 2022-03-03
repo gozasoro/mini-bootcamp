@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::BaseController < ApplicationController
+class API::BaseController < ApplicationController
   before_action :check_xhr, :authenticate_user_for_api
 
   private

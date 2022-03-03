@@ -8,6 +8,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
+    = favicon_link_tag
   body
     - if flash
       = render "alert", flash: flash

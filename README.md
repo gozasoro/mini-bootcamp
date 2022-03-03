@@ -2,6 +2,10 @@
 Mini Bootcampはプログラミングスクール運営者向けのプログラミングテスト作成サービスです。
 受講生自身でプログラムの動作をチェック・確認ができるので、課題チェックの仕事を軽減します！
 
+## 動作環境
+コードの実行・判定に[Docker](https://www.docker.com/)を使用しているのでインストールが必要です(Linux版Docker, Docker Desktop for Mac)。
+また、railsからDockerを動かすために[docker-api gem](https://github.com/upserve/docker-api)を使用しています。
+
 ## OmniAuth
 `credentials.yml.enc`にGitHubのclient_idとclient_secretを記載します。
 ```
