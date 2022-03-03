@@ -39,7 +39,7 @@ RSpec.describe Category, type: :model do
 
     context "editor_modeカラム" do
       it "空でないこと" do
-        new_category.docker_image = ""
+        new_category.editor_mode = ""
         is_expected.to be false
       end
     end

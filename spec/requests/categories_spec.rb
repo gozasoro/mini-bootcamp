@@ -8,6 +8,7 @@ RSpec.describe "Categories", type: :request do
   let!(:category_second) { create(:category, :node) }
   let(:req_params) { { category: { row_order_position: 0 } } }
   let(:headers) { { 'X-Requested-With': "XMLHttpRequest" } }
+
   context "管理者ではない場合" do
     before do
       login_for_api
@@ -24,7 +25,7 @@ RSpec.describe "Categories", type: :request do
       login_as_admin_for_api
     end
 
-    it "カテゴリーの順番を変更する" do
+    it "カテゴリーの順番を変更できる" do
       expect(Category.rank(:row_order).first.id).to be category_first.id
       patch api_category_path(category_second), params: req_params, headers: headers
       expect(Category.rank(:row_order).first.id).to be category_second.id

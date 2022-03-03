@@ -50,7 +50,6 @@ RSpec.describe "Categories", type: :system do
 
     it "カテゴリを作成する" do
       visit new_category_path
-      expect(current_path).to eq new_category_path
       fill_in "カテゴリ名", with: "node_category"
       fill_in "Docker image", with: "node:16.13"
       fill_in "category[command]", with: "node"
@@ -65,7 +64,6 @@ RSpec.describe "Categories", type: :system do
     it "カテゴリを作成する(Docker image取得エラー)" do
       allow(Docker::Image).to receive(:create).and_raise
       visit new_category_path
-      expect(current_path).to eq new_category_path
       fill_in "カテゴリ名", with: "node_category"
       fill_in "Docker image", with: "node:16.13"
       fill_in "category[command]", with: "node"
@@ -114,12 +112,16 @@ RSpec.describe "Categories", type: :system do
 
     it "チャレンジがない場合にカテゴリを削除する" do
       visit edit_category_path(category_have_no_challenge)
+      count = Category.count
       page.accept_confirm do
         click_link "カテゴリを削除する"
       end
 
       expect(current_path).to eq root_path
+      expect(page).to have_content "カテゴリを削除しました。"
       expect(page).to have_no_content category_have_no_challenge.name
+      count_now = Category.count
+      expect(count_now - count).to be(-1)
     end
   end
 end
