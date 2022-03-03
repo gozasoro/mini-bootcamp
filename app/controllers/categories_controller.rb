@@ -19,16 +19,38 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    if @category.save
-      redirect_to root_path, notice: "カテゴリを登録しました。"
+    if @category.valid?
+      begin
+        Docker::Image.create('fromImage': @category.docker_image)
+        if @category.save
+          redirect_to root_path, notice: "カテゴリを登録しました。"
+        else
+          render :new, status: :unprocessable_entity
+        end
+      rescue
+        flash.now[:alert] = "Docker imageの取得に失敗しました。"
+        render :new
+      end
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    if @category.update(category_params)
-      redirect_to root_path, notice: "カテゴリを更新しました。"
+    @category.assign_attributes(category_params)
+
+    if @category.valid?
+      begin
+        Docker::Image.create('fromImage': @category.docker_image)
+        if @category.save
+          redirect_to root_path, notice: "カテゴリを更新しました。"
+        else
+          render :new, status: :unprocessable_entity
+        end
+      rescue
+        flash.now[:alert] = "Docker imageの取得に失敗しました。"
+        render :edit
+      end
     else
       render :edit, status: :unprocessable_entity
     end

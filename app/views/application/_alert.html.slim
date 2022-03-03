@@ -1,3 +1,6 @@
 - if flash[:notice]
   p.alert.has-background-success
     = flash[:notice]
+- elsif flash[:alert]
+  p.alert.has-background-danger
+    = flash[:alert]

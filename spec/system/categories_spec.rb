@@ -36,6 +36,7 @@ RSpec.describe "Categories", type: :system do
   context "管理者の場合" do
     before do
       login_as_admin
+      allow(Docker::Image).to receive(:create).and_return("Mock image")
     end
 
     it "カテゴリ・チャレンジ一覧を表示する" do
@@ -61,6 +62,20 @@ RSpec.describe "Categories", type: :system do
       expect(page).to have_content "node_category"
     end
 
+    it "カテゴリを作成する(Docker image取得エラー)" do
+      allow(Docker::Image).to receive(:create).and_raise
+      visit new_category_path
+      expect(current_path).to eq new_category_path
+      fill_in "カテゴリ名", with: "node_category"
+      fill_in "Docker image", with: "node:16.13"
+      fill_in "category[command]", with: "node"
+      fill_in "category[extension]", with: "js"
+      click_button "登録する"
+
+      expect(current_path).to eq "/categories"
+      expect(page).to have_content "Docker imageの取得に失敗しました。"
+    end
+
     it "カテゴリを編集する" do
       visit edit_category_path(category)
       fill_in "カテゴリ名", with: "golang_category"
@@ -72,6 +87,19 @@ RSpec.describe "Categories", type: :system do
       expect(current_path).to eq root_path
       expect(page).to have_content "カテゴリを更新しました。"
       expect(page).to have_content "golang_category"
+    end
+
+    it "カテゴリを編集する(Docker image取得エラー)" do
+      allow(Docker::Image).to receive(:create).and_raise
+      visit edit_category_path(category)
+      fill_in "カテゴリ名", with: "golang_category"
+      fill_in "Docker image", with: "golang:1.13"
+      fill_in "category[command]", with: "go run"
+      fill_in "category[extension]", with: "go"
+      click_button "更新する"
+
+      expect(current_path).to eq "/categories/#{category.id}"
+      expect(page).to have_content "Docker imageの取得に失敗しました。"
     end
 
     it "チャレンジがある場合にカテゴリを削除できない" do
