@@ -5,7 +5,7 @@ class Api::BaseController < ApplicationController
 
   private
     def check_xhr
-      render status: :unprocessable_entity unless request.xhr?
+      head :unprocessable_entity unless request.xhr?
     end
 
     def authenticate_user_for_api
