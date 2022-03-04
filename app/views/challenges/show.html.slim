@@ -1,3 +1,11 @@
 section.section
   .container
+    nav.breadcrumb(aria-label="breadcrumbs")
+      ul
+        li = link_to "Home", root_path
+        li.is-static
+          a href="#" = @category.name
+        li.is-active
+          a href="#" aria-current="page"
+            = @challenge.title
     #js-challenge data-id="#{@challenge.id}"

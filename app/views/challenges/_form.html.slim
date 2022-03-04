@@ -18,7 +18,7 @@
       = f.label :model_answer, class: "label"
       .control
         = f.text_area :model_answer, class: "textarea has-fixed-size", rows: 15
-  .columns
+  .columns.is-multiline
     = f.fields_for :checks do |check|
       = render "check_fields", f: check
     .column.is-3
