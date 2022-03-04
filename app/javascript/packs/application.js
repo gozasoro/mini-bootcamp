@@ -6,9 +6,9 @@
 import Rails from '@rails/ujs'
 import * as ActiveStorage from '@rails/activestorage'
 
-import '../challenge'
-import '../sortable'
-import '../resize_textarea'
+import '../challenge.js'
+import '../sortable.js'
+import '../resize_textarea.js'
 
 import 'cocoon-js-vanilla'
 

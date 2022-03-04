@@ -80,9 +80,9 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  encoding: unicode
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  adaoter: mysql2
+  adapter: mysql2
   database: mini_bootcamp
   username: mini_bootcamp
   password: <%= ENV['MINI_BOOTCAMP_DATABASE_PASSWORD'] %>

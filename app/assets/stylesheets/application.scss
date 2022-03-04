@@ -14,11 +14,6 @@
  *= require_self
  */
 
-// $primary: #f03d4d;
-// $button-color: black;
-// $button-background-color: wheat;
-// $button-border-color: black;
-// $button-border-width: 1px;
 $code: white;
 $code-background: #1f2330;
 $progress-bar-background-color: white;
@@ -32,7 +27,8 @@ $progress-bar-background-color: white;
 @import "bulma/sass/helpers/_all";
 @import "bulma/sass/layout/_all";
 
-@import "@fortawesome/fontawesome-free/css/all.css";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 .alert {
