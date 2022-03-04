@@ -7,6 +7,7 @@ class Category < ApplicationRecord
   ranks :row_order
 
   EDITOR_MODES = {
+    Golang: "ace/mode/golang",
     JavaScript: "ace/mode/javascript",
     Python: "ace/mode/python",
     Ruby: "ace/mode/ruby"
