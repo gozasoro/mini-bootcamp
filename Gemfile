@@ -35,7 +35,7 @@ gem "cocoon"
 gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-rails_csrf_protection"
-gem 'font-awesome-sass', '~> 5.15.1'
+gem "font-awesome-sass", "~> 5.15.1"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false

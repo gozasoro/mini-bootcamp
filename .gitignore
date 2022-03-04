@@ -17,6 +17,8 @@
 /tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
+!/tmp/docker/
+!/tmp/docker/.keep
 
 # Ignore uploaded files in development.
 /storage/*
