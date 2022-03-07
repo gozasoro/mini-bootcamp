@@ -17,7 +17,7 @@ class Category < ApplicationRecord
   }
 
   validates :name, presence: true, uniqueness: true
-  validates :docker_image, presence: true, uniqueness: true
+  validates :docker_image, presence: true
   validates :editor_mode, inclusion: { in: EDITOR_MODES.values }
   validates :command, presence: true
   validates :extension, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "は英字のみ使えます" }

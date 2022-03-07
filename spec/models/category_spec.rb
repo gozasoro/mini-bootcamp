@@ -30,11 +30,6 @@ RSpec.describe Category, type: :model do
         new_category.docker_image = ""
         is_expected.to be false
       end
-
-      it "uniqueであること" do
-        new_category.docker_image = category.docker_image
-        is_expected.to be false
-      end
     end
 
     context "editor_modeカラム" do
