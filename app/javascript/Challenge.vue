@@ -211,7 +211,7 @@ export default {
         code: codeInput.value,
         check: selected.value
       }
-      axios.post(`/api/challenges/${props.id}/run`, data)
+      axios.post(`/api/challenges/${props.id}/runs`, data)
         .then(response => {
           isRunning.value = false
           const exitcode = response.data.exitcode
@@ -249,7 +249,7 @@ export default {
       result.value.splice(0)
       challengeSuccess.value = null
       const data = { code: codeInput.value }
-      axios.post(`/api/challenges/${props.id}/judge`, data)
+      axios.post(`/api/challenges/${props.id}/judges`, data)
         .then(response => {
           challengeSuccess.value = response.data['challenge_success']
           response.data.result.forEach(check => result.value.push(check))

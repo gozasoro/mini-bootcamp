@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: "json" } do
     resources :categories, only: %i(update)
     resources :challenges, only: %i(show update) do
-      post "/run", to: "challenges#run"
-      post "/judge", to: "challenges#judge"
+      scope module: :challenges do
+        resources :runs, only: %i(create)
+        resources :judges, only: %i(create)
+      end
     end
   end
   resources :categories, except: %i(show) do
