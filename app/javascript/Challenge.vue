@@ -11,84 +11,27 @@ h1.title.is-3.has-text-centered
   .column(style="white-space: pre-wrap")
     | {{ challenge.content }}
   .column
-    .field
-      label.label(for="editor") コード
-      .control
-        textarea#editor
-    .columns.is-variable.is-2.is-mobile
-      .column
-        .control.mb-1
-          .select.is-fullwidth
-            select(v-model="selected")
-              option(v-for="check in challenge.checks" :value="check.index") {{ `Check ${check.index + 1}` }}
-        div(v-if="challenge.checks[selected]")
-          code.stdin(data-subtitle="標準入力") {{ challenge.checks[selected].stdin }}
-          code.stdout(data-subtitle="期待される出力") {{ challenge.checks[selected].stdout }}
-      .column
-        .control.mb-1
-          button.button.is-primary.is-fullwidth(@click="run" :class="isRunning ? 'is-loading' : ''")
-            | コードを実行
-        .columns
-          .column
-            code.result(data-subtitle="実行結果" :class="codeResult ? codeResultClass : ''") {{ codeResult }}
+    Editor(
+      ref="editor"
+      v-model="codeInput"
+    )
+    Runner(
+      :id="challenge.id"
+      :checks="challenge.checks"
+      :code="codeInput"
+    )
 hr
-.columns.is-centered
-  .column.is-12-mobile.is-4-desktop
-    button.button.is-primary.mb-4.is-fullwidth(@click="judge" :class="isLoading ? 'is-loading' : ''")
-      | 全てのチェックで確認する
-    .columns
-      .column.is-3.has-text-centered
-        .is-size-7.mb-4 判定
-        .is-size-5
-          i.fas.fa-minus.has-text-grey-lighter(v-if="challengeSuccess === null")
-          i.fas.fa-check.has-text-success(v-else-if="challengeSuccess")
-          i.fas.fa-times.has-text-danger(v-else-if="!challengeSuccess")
-      .column.is-3.has-text-centered
-        .is-size-7.mb-3 チェック
-        .is-size-5
-          | {{ `${correctAnswers} / ${challenge.checks.length}` }}
-      .column
-        button.button.is-small.is-fullwidth.mb-2(
-          v-if="next.url"
-          @click="location.href(next.url)"
-          :disabled="!challengeSuccess"
-        )
-          span {{ next.title }}
-          span.icon.is-small
-            i.fas.fa-arrow-right
-        button.button.is-small.is-fullwidth(:disabled="!challengeSuccess" @click="openModal")
-          span 模範解答
-.modal#js-modal
-  .modal-background(@click="closeModal")
-  .modal-content
-    .box
-      textarea#model-answer
-  .modal-close.is-large(aria-label="close" @click="closeModal")
-.block
-  .table-container
-    table.table.is-bordered.is-relative.mx-auto
-      .loading-cover(v-if="isLoading || isLoading === null")
-      thead
-        tr
-          th
-          th(v-for="check in challenge.checks") {{ `Check ${check.index + 1}` }}
-      tbody
-        tr
-          th 判定
-          td.has-text-centered(v-for="(check, index) in challenge.checks")
-            i.fas.fa-minus.has-text-grey-lighter(v-if="!result[index]")
-            i.fas.fa-check.has-text-success(v-else-if="result[index].success")
-            i.fas.fa-times.has-text-danger(v-else-if="!result[index].success")
-        tr
-          th 標準入力
-          td(v-for="check in challenge.checks") {{ check.stdin }}
-        tr
-          th 期待される出力
-          td(v-for="check in challenge.checks") {{ check.stdout }}
-        tr
-          th 実行結果
-          td(v-for="(check, index) in challenge.checks")
-            span(v-if="result[index]") {{ result[index].stdout }}
+Checker(
+  :id="challenge.id"
+  :checks="challenge.checks"
+  :code="codeInput"
+  :nextChallenge="next"
+  @set-answer="modelAnswer.set($event)"
+  @open-modal="modelAnswer.openModal()"
+)
+ModelAnswer(
+  ref="modelAnswer"
+)
 hr(v-if="previous.url || next.url")
 nav.level
   .level-left
@@ -109,8 +52,11 @@ nav.level
 import { ref, reactive, computed, onMounted } from 'vue'
 import axios from 'axios'
 import { setHeaders } from './modules/set_headers'
-import ace from 'ace-builds/src-noconflict/ace'
-import 'ace-builds/webpack-resolver'
+
+import Editor from './components/Editor.vue'
+import Runner from './components/Runner.vue'
+import Checker from './components/Checker.vue'
+import ModelAnswer from './components/ModelAnswer.vue'
 
 export default {
   name: 'Challenge',
@@ -120,9 +66,24 @@ export default {
       required: true
     }
   },
+  components: {
+    Editor,
+    Runner,
+    Checker,
+    ModelAnswer
+  },
   setup (props) {
+    onMounted(() => {
+      getChallengeContent()
+        .then(mode => {
+          editor.value.setupEditor(mode)
+          modelAnswer.value.setupEditor(mode)
+        })
+    })
+
     // Challenge
     const challenge = reactive({
+      id: props.id,
       title: '',
       content: '',
       checks: [],
@@ -159,140 +120,23 @@ export default {
     }
 
     // Editor
-    const modelAnswerEditor = ref(null)
-
-    const setupEditor = (mode) => {
-      const setting = {
-        maxLines: 200,
-        minLines: 25,
-        wrap: true,
-        tabSize: 2,
-        theme: 'ace/theme/tomorrow',
-        mode: mode
-      }
-      const editor = ace.edit('editor', setting)
-      modelAnswerEditor.value = ace.edit('model-answer', Object.assign(setting, { readOnly: true }))
-
-      editor.session.on('changeMode', (_, session) => {
-        if (mode === 'ace/mode/javascript' && session.$worker) {
-          session.$worker.send('changeOptions', [{ asi: true }])
-        }
-      })
-
-      modelAnswerEditor.value.session.on('changeMode', (_, session) => {
-        if (mode === 'ace/mode/javascript' && session.$worker) {
-          session.$worker.send('changeOptions', [{ asi: true }])
-        }
-      })
-
-      editor.session.on('change', () => {
-        codeInput.value = editor.getValue()
-      })
-    }
-
-    onMounted(() => {
-      getChallengeContent()
-        .then(mode => setupEditor(mode))
-    })
-
-    // Run and check
-    const isRunning = ref(false)
+    const editor = ref()
     const codeInput = ref('')
-    const codeResult = ref('')
-    const codeCorrect = ref(false)
-
-    const selected = ref(0)
-    const codeResultClass = computed(() => codeCorrect.value ? 'success' : 'failed')
-
-    const run = () => {
-      if (codeInput.value === '') return
-      isRunning.value = true
-      const data = {
-        code: codeInput.value,
-        check: selected.value
-      }
-      axios.post(`/api/challenges/${props.id}/runs`, data)
-        .then(response => {
-          isRunning.value = false
-          const exitcode = response.data.exitcode
-          if (exitcode === 0 && response.data.stderr === '') {
-            codeResult.value = response.data.stdout
-            codeCorrect.value = response.data.success
-          } else {
-            codeResult.value = response.data.stderr
-            codeCorrect.value = false
-          }
-        })
-        .catch(error => console.log(error.response))
-    }
-
-    // Judge
-    const isLoading = ref(null)
-    const result = ref([])
-    const challengeSuccess = ref(null)
-
-    const correctAnswers = computed(() => {
-      if (result.value.length === 0) {
-        return '-'
-      } else {
-        const count = result.value.reduce(
-          (correctCount, currentCheck) => {
-            return currentCheck.success ? correctCount + 1 : correctCount
-          }, 0)
-        return count
-      }
-    })
-
-    const judge = () => {
-      if (codeInput.value === '') return
-      isLoading.value = true
-      result.value.splice(0)
-      challengeSuccess.value = null
-      const data = { code: codeInput.value }
-      axios.post(`/api/challenges/${props.id}/judges`, data)
-        .then(response => {
-          challengeSuccess.value = response.data['challenge_success']
-          response.data.result.forEach(check => result.value.push(check))
-          isLoading.value = false
-          modelAnswerEditor.value.setValue(response.data['model_answer'] || '')
-        })
-        .catch(error => console.log(error.response))
-    }
-
-    // Modal
-    const openModal = () => {
-      document.getElementById('js-modal').classList.add('is-active')
-    }
-
-    const closeModal = () => {
-      document.getElementById('js-modal').classList.remove('is-active')
-    }
+    const modelAnswer = ref()
 
     return {
       challenge,
       previous,
       next,
-      selected,
-      isRunning,
+      editor,
       codeInput,
-      codeResult,
-      codeCorrect,
-      codeResultClass,
-      isLoading,
-      result,
-      challengeSuccess,
-      correctAnswers,
-      run,
-      judge,
-      openModal,
-      closeModal
+      modelAnswer
     }
   }
 }
 </script>
 
 <style scoped>
-
   table {
     white-space: pre;
   }
