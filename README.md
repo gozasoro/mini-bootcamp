@@ -2,7 +2,18 @@
 Mini Bootcampはプログラミングスクール運営者向けのプログラミングテスト作成サービスです。
 受講生自身でプログラムの動作をチェック・確認ができるので、課題チェックの仕事を軽減します！
 
+[![Image from Gyazo](https://i.gyazo.com/7e1e01a0e9fc8186712f97c76ac5c4bd.gif)](https://gyazo.com/7e1e01a0e9fc8186712f97c76ac5c4bd)
+
+## インストール
+```
+$ bin/setup
+$ bundle exec foreman start
+```
+
 ## 動作環境
+- Ruby 3.0.2
+- Rails 6.1.4
+
 コードの実行・判定に[Docker](https://www.docker.com/)を使用しているのでインストールが必要です(Linux版Docker, Docker Desktop for Mac)。
 また、railsからDockerを動かすために[docker-api gem](https://github.com/upserve/docker-api)を使用しています。
 
