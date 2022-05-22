@@ -2,28 +2,25 @@ section.section
   .container
     h1.challenges.title.is-4.mb-5
       | プログラミングテスト一覧
-    .columns.is-multiline.is-variable.is-6.is-centered.js-sortable data-model="categories"
+    .columns.is-multiline.is-variable.is-6.js-sortable data-model="categories"
       - @categories.each do |category|
         - challenge_count = category.challenges.size
         - archivement_count = category.challenges.select{ |c| c.has_archivement?(current_user) }.size
         .column.is-4.item data-id="#{category.id}"
-          .category.content
+          .category
             .header class="#{"handle" if current_user.admin}"
               h3.name = category.name
               .status.is-size-7
-                = "全#{challenge_count}問中#{archivement_count}問クリア"
+                = "#{archivement_count}/#{challenge_count}"
                 progress.progress.is-success.is-small value="#{archivement_count}" max="#{challenge_count}"
-              - if current_user.admin
-                = link_to edit_category_path(category), class: "button is-small is-ghost edit" do
-                  i.fas.fa-pen
             .body
               ul.challenges.js-sortable data-model="challenges"
                 - category.challenges.rank(:row_order).each do |challenge|
                   li.item data-id="#{challenge.id}"
-                    = link_to category_challenge_path(category, challenge) do
+                    = link_to category_challenge_path(category, challenge), class: "link" do
                       = challenge.title
-                    - if challenge.has_archivement?(current_user)
-                      i.fas.fa-check.is-size-7.has-text-success.ml-2
+                      - if challenge.has_archivement?(current_user)
+                        i.fas.fa-check.is-size-7.has-text-success.ml-2
                     - if current_user.admin
                       .buttons
                         button.button.is-light.is-small.handle
@@ -32,12 +29,15 @@ section.section
                         = link_to edit_category_challenge_path(category, challenge), class: "button is-small edit" do
                           i.fas.fa-pen
               - if current_user.admin
-                .has-text-centered.mt-2
-                  = link_to new_category_challenge_path(category), class: "button is-small" do
+                .new-challenge
+                  = link_to new_category_challenge_path(category), class: "button is-small has-background-white mr-1" do
                     i.fas.fa-plus-circle.mr-1
-                    | 新規プログラミングテスト
+                    | 問題を追加する
+                  - if current_user.admin
+                    = link_to edit_category_path(category), class: "button is-small has-background-white" do
+                      i.fas.fa-pen
       - if current_user.admin
         .column.is-4
-          = link_to new_category_path, class: "new category" do
+          = link_to new_category_path, class: "new-category" do
             i.fas.fa-plus-circle.mr-1
-            | 新規カテゴリ
+            | カテゴリを追加する
