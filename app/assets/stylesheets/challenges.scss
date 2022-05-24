@@ -1,0 +1,104 @@
+// Show Page
+.workspace {
+  padding: 1rem;
+  border: 1px solid silver;
+  background: white;
+  border-radius: 4px;
+}
+
+code {
+  background: $code-background;
+  font-size: 14px;
+  display: block;
+  padding: 1.5rem 0.5rem 0.5rem 0.8rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: left;
+  line-height: 1.5;
+  -moz-tab-size: 2;
+  tab-size: 2;
+  -ms-hyphens: none;
+  -webkit-hyphens: none;
+  hyphens: none;
+  margin: 0;
+  position: relative;
+  color: $code;
+  border-radius: 4px;
+
+  &::before {
+    content: attr(data-subtitle);
+    font-size: 0.7rem;
+    position: absolute;
+    left: 0.8rem;
+    top: 0.3rem;
+    color: #b1b1b1;
+  }
+
+  &.stdin {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &.stdout {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: 1px dashed gray;
+  }
+
+  &.result {
+    min-height: 107px;
+  }
+
+  &.success::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";
+    font-weight: 900;
+    font-size: 0.6rem;
+    position: absolute;
+    top: 0.3rem;
+    left: 3.8rem;
+    color: $green;
+  }
+
+  &.failed::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00d";
+    font-weight: 900;
+    font-size: 0.6rem;
+    position: absolute;
+    top: 0.3rem;
+    left: 3.8rem;
+    color: $red;
+  }
+}
+
+// New Page
+.nested-fields {
+  .check {
+    background : snow;
+    padding: 1rem;
+    position: relative;
+    border-radius: 4px;
+  }
+
+  .delete {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+.new.check {
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: darkgray;
+  border: 1px dashed;
+  width: 100%;
+  height: 260px;
+  &:hover {
+    color: dimgray;
+    border: 1px dashed;
+  }
+}

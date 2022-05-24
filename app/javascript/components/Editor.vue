@@ -1,6 +1,6 @@
 <template lang="pug">
 .field
-  label.label(for="editor") コード
+  h5.title.is-5.mb-2 コード
   .control
     textarea#editor
 </template>

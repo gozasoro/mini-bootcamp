@@ -1,0 +1,44 @@
+// Alert
+.alert {
+  width: 100%;
+  color: white;
+  text-align: center;
+  line-height: 1.5rem;
+
+  &+.login {
+    height: calc(100vh - 1.5rem);
+  }
+}
+
+// Navbar
+nav.navbar {
+  border-bottom: 1px solid silver;
+  background: wheat;
+  align-items: center;
+
+  .section {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    min-height: 3.25rem;
+    align-items: center;
+
+    .item {
+      display: flex;
+    }
+  }
+  .logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 24px;
+    color: $gray;
+
+    &:hover {
+      color: $gray !important;
+    }
+  }
+}

@@ -1,0 +1,123 @@
+// Index Page
+.challenges.title {
+  border-left: 8px solid wheat;
+  padding-left: 1rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  color: $dark-gray;
+}
+
+.category {
+  border: 1px solid silver;
+  border-radius: 4px;
+  height: 100%;
+  background: white;
+
+  .handle {
+    cursor: move;
+  }
+
+  .header {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 0.25rem 0;
+
+    .name {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 0;
+      line-height: 3rem;
+      padding-left: 1rem;
+      flex-grow: 1;
+      color: $dark-gray;
+    }
+
+    .status {
+      width: 38%;
+      margin-right: 8px;
+      text-align: center;
+
+      .progress {
+        border: 1px solid;
+      }
+    }
+  }
+
+  .challenges {
+    margin-top: 0;
+    .item {
+      display: flex;
+      line-height: 2em;
+      justify-content: space-between;
+      border-bottom: 1px solid lightgray;
+
+      .link {
+        flex-grow: 1;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    .buttons {
+      margin-right: 1rem;
+    }
+  }
+
+  .new-challenge {
+    padding: 0.5rem;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.new-category {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: darkgray;
+  border: 1px dashed;
+  border-radius: 4px;
+  width: 100%;
+  min-height: 185px;
+  height: 100%;
+  &:hover {
+    color: dimgray;
+    border: 1px dashed;
+  }
+}
+
+// New Page
+.field_with_errors {
+  .editor-mode-label {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.command-field {
+  border-radius: 4px;
+  color: $code;
+  background: $code-background;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-right: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+
+  .command-input {
+    border-radius: 4px;
+    border: none;
+    color: $code;
+    background: $code-background;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .field_with_errors {
+    display: inline-block;
+  }
+}

@@ -18,9 +18,11 @@ section.section
                 - category.challenges.rank(:row_order).each do |challenge|
                   li.item data-id="#{challenge.id}"
                     = link_to category_challenge_path(category, challenge), class: "link" do
-                      = challenge.title
                       - if challenge.has_archivement?(current_user)
-                        i.fas.fa-check.is-size-7.has-text-success.ml-2
+                        i.fas.fa-check.is-size-7.has-text-success.mr-2
+                      - else
+                        i.fas.fa-minus.is-size-7.has-text-grey-lighter.mr-2
+                      = challenge.title
                     - if current_user.admin
                       .buttons
                         button.button.is-light.is-small.handle

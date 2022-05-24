@@ -1,25 +1,29 @@
 <template lang="pug">
-p.is-size-6.has-text-centered
-  span.has-text-success(v-if="challenge.archivement")
-    i.fas.fa-medal.mr-1
+p.is-size-6
+  span.has-text-success.has-text-weight-bold(v-if="challenge.archivement")
+    i.fas.fa-check.mr-1
     | 達成済
-  span.has-text-grey(v-else)
+  span.has-text-grey-light.has-text-weight-bold(v-else)
     | 未クリア
-h1.title.is-3.has-text-centered
+h1.title.is-3
+  span.tag.is-black.mr-2
+    | {{ challenge.category }}
   | {{ challenge.title }}
-.columns
-  .column(style="white-space: pre-wrap")
-    | {{ challenge.content }}
-  .column
-    Editor(
-      ref="editor"
-      v-model="codeInput"
-    )
-    Runner(
-      :id="challenge.id"
-      :checks="challenge.checks"
-      :code="codeInput"
-    )
+.workspace
+  .columns
+    .column(style="white-space: pre-wrap")
+      h5.title.is-5.mb-2 問題
+      | {{ challenge.content }}
+    .column
+      Editor(
+        ref="editor"
+        v-model="codeInput"
+      )
+      Runner(
+        :id="challenge.id"
+        :checks="challenge.checks"
+        :code="codeInput"
+      )
 hr
 Checker(
   :id="challenge.id"
@@ -87,7 +91,8 @@ export default {
       title: '',
       content: '',
       checks: [],
-      archivement: null
+      archivement: null,
+      category: ''
     })
     const previous = reactive({
       title: null,
@@ -106,6 +111,7 @@ export default {
       challenge.title = data.title
       challenge.content = data.content
       challenge.archivement = data.archivement
+      challenge.category = data.category
       previous.title = data.previous ? data.previous.title : null
       previous.url = data.previous ? data.previous.url : null
       next.title = data.next ? data.next.title : null
