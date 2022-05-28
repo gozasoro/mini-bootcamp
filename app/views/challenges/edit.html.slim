@@ -1,6 +1,8 @@
 section.section
   .container
-    h1.title.is-3.has-text-centered.mb-3
+    h1.title.is-3.mb-3
+      span.tag.is-black.mr-2
+        = @challenge.category.name
       = @challenge.title
     = render "form"
     .columns.is-centered.mt-2

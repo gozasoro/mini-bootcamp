@@ -1,10 +1,12 @@
+$gray: #4c4b4a;
+
 // Index Page
 .challenges.title {
   border-left: 8px solid wheat;
   padding-left: 1rem;
   height: 2.5rem;
   line-height: 2.5rem;
-  color: $dark-gray;
+  color: $gray;
 }
 
 .category {
@@ -34,7 +36,7 @@
       line-height: 3rem;
       padding-left: 1rem;
       flex-grow: 1;
-      color: $dark-gray;
+      color: $gray;
     }
 
     .status {
@@ -101,8 +103,8 @@
 
 .command-field {
   border-radius: 4px;
-  color: $code;
-  background: $code-background;
+  color: white;
+  background: #1f2330;
   padding-bottom: calc(0.5em - 1px);
   padding-left: calc(0.75em - 1px);
   padding-right: calc(0.75em - 1px);
@@ -111,8 +113,8 @@
   .command-input {
     border-radius: 4px;
     border: none;
-    color: $code;
-    background: $code-background;
+    color: white;
+    background: #1f2330;
     font-size: 1rem;
     line-height: 1.5;
   }

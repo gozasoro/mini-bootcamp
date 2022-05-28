@@ -1,20 +1,18 @@
 <template lang="pug">
-.columns.is-variable.is-2.is-mobile
+.columns.is-variable.is-2.is-mobile.mb-2
   .column
     .control.mb-1
       .select.is-fullwidth
         select(v-model="selected")
           option(v-for="check in checks" :value="check.index") {{ `Check ${check.index + 1}` }}
-    div(v-if="checks[selected]")
-      code.stdin(data-subtitle="標準入力") {{ checks[selected].stdin }}
-      code.stdout(data-subtitle="期待される出力") {{ checks[selected].stdout }}
   .column
     .control.mb-1
-      button.button.is-primary.is-fullwidth(@click="run" :class="isRunning ? 'is-loading' : ''")
+      button.button.is-fullwidth(@click="run" :class="isRunning ? 'is-loading' : ''")
         | コードを実行
-    .columns
-      .column
-        code.result(data-subtitle="実行結果" :class="codeResult ? codeResultClass : ''") {{ codeResult }}
+.code-container(v-if="checks[selected]")
+  code.stdin.mb-3(data-subtitle="標準入力") {{ checks[selected].stdin }}
+  code.stdout(data-subtitle="期待される出力") {{ checks[selected].stdout }}
+code.result(data-subtitle="実行結果" :class="codeResult ? codeResultClass : ''") {{ codeResult }}
 </template>
 
 <script>

@@ -13,11 +13,7 @@
  *= require_self
  */
 
-$gray: #6a6967;
-$dark-gray: #4c4b4a;
 $section-padding-desktop: 1.5rem 3rem;
-$code: white;
-$code-background: #1f2330;
 $progress-bar-background-color: white;
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
@@ -55,9 +51,9 @@ hr {
   align-items: center;
 
   .logo {
+    @extend .has-text-grey-dark;
     font-family: 'Fredoka One', cursive;
     font-size: 32px;
-    color: $gray;
     margin-bottom: 1rem;
   }
 

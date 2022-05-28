@@ -1,9 +1,42 @@
+$gray: #4c4b4a;
+$darkgray: #3f3e3e;
+$code-background: #faf2e4;
+
 // Show Page
 .workspace {
   padding: 1rem;
   border: 1px solid silver;
   background: white;
   border-radius: 4px;
+  margin-bottom: 3rem;
+}
+
+.code-container {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  padding: 0.75rem;
+  position: relative;
+  margin-bottom: 0.75rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 25%;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid lightgray;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -28.5px;
+    left: 25%;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid white;
+  }
 }
 
 code {
@@ -22,7 +55,7 @@ code {
   hyphens: none;
   margin: 0;
   position: relative;
-  color: $code;
+  color: $darkgray;
   border-radius: 4px;
 
   &::before {
@@ -31,18 +64,7 @@ code {
     position: absolute;
     left: 0.8rem;
     top: 0.3rem;
-    color: #b1b1b1;
-  }
-
-  &.stdin {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  &.stdout {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-top: 1px dashed gray;
+    color: $gray;
   }
 
   &.result {
@@ -57,7 +79,7 @@ code {
     position: absolute;
     top: 0.3rem;
     left: 3.8rem;
-    color: $green;
+    color: forestgreen;
   }
 
   &.failed::after {
@@ -68,7 +90,29 @@ code {
     position: absolute;
     top: 0.3rem;
     left: 3.8rem;
-    color: $red;
+    color: orangered;
+  }
+}
+
+.result-table {
+  th {
+    font-weight: normal;
+    font-size: 0.875rem;
+  }
+
+  thead th {
+    border-bottom: none;
+    text-align: center !important;
+  }
+
+  tbody {
+    th {
+      min-width: 175px;
+    }
+
+    td {
+      min-width: 100px;
+    }
   }
 }
 

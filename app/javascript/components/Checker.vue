@@ -1,33 +1,22 @@
 <template lang="pug">
 .columns.is-centered
   .column.is-12-mobile.is-4-desktop
-    button.button.is-primary.mb-4.is-fullwidth(@click="judge" :class="isLoading ? 'is-loading' : ''")
-      | 全てのチェックで確認する
-    .columns
-      .column.is-3.has-text-centered
-        .is-size-7.mb-4 判定
-        .is-size-5
-          i.fas.fa-minus.has-text-grey-lighter(v-if="challengeSuccess === null")
-          i.fas.fa-check.has-text-success(v-else-if="challengeSuccess")
-          i.fas.fa-times.has-text-danger(v-else-if="!challengeSuccess")
-      .column.is-3.has-text-centered
-        .is-size-7.mb-3 チェック
-        .is-size-5
-          | {{ `${correctAnswers} / ${checks.length}` }}
+    button.button.is-size-5.is-primary.mb-4.is-fullwidth(@click="judge" :class="isLoading ? 'is-loading' : ''")
+      | 全てのCheckで確認する
+    .columns.is-mobile
+      .column.has-text-centered
+        span.mr-2.has-text-weight-bold 実行結果: 判定
+        i.fas.fa-minus.has-text-grey-lighter(v-if="challengeSuccess === null")
+        i.fas.fa-check.has-text-success(v-else-if="challengeSuccess")
+        i.fas.fa-times.has-text-danger(v-else-if="!challengeSuccess")
+        span.ml-2
+          | {{ `(${correctAnswers}/${checks.length})` }}
       .column
-        button.button.is-small.is-fullwidth.mb-2(
-          v-if="nextChallenge.url"
-          @click="location.href(nextChallenge.url)"
-          :disabled="!challengeSuccess"
-        )
-          span {{ nextChallenge.title }}
-          span.icon.is-small
-            i.fas.fa-arrow-right
         button.button.is-small.is-fullwidth(:disabled="!challengeSuccess" @click="$emit('open-modal')")
-          span 模範解答
+          span 模範解答を見る
 .block
   .table-container
-    table.table.is-bordered.is-relative.mx-auto
+    table.table.is-bordered.is-relative.mx-auto.result-table
       .loading-cover(v-if="isLoading || isLoading === null")
       thead
         tr

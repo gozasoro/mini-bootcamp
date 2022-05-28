@@ -24,7 +24,6 @@ h1.title.is-3
         :checks="challenge.checks"
         :code="codeInput"
       )
-hr
 Checker(
   :id="challenge.id"
   :checks="challenge.checks"
@@ -40,13 +39,13 @@ hr(v-if="previous.url || next.url")
 nav.level
   .level-left
     .level-item(v-if="previous.url")
-      a.button.is-light.is-small(:href="previous.url")
+      a.button.is-small(:href="previous.url")
         span.icon.is-small
           i.fas.fa-caret-left
         span {{ previous.title }}
   .level-right
     .level-item(v-if="next.url")
-      a.button.is-light.is-small(:href="next.url")
+      a.button.is-small(:href="next.url")
         span {{ next.title }}
         span.icon.is-small
           i.fas.fa-caret-right
