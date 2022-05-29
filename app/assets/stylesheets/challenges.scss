@@ -119,9 +119,10 @@ code {
 // New Page
 .nested-fields {
   .check {
-    background : snow;
+    background : white;
     padding: 1rem;
     position: relative;
+    border: 1px solid lightgray;
     border-radius: 4px;
   }
 
@@ -140,7 +141,7 @@ code {
   color: darkgray;
   border: 1px dashed;
   width: 100%;
-  height: 260px;
+  height: 310px;
   &:hover {
     color: dimgray;
     border: 1px dashed;

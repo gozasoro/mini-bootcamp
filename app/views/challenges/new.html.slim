@@ -2,9 +2,8 @@ section.section
   .container
     h1.title.is-3.has-text-centered
       | 問題作成
-    .block
-      = render "form"
+    = render "form"
     .block
       .columns.is-centered
-        .column.is-flex.is-justify-content-space-between
+        .column.is-4.is-flex.is-justify-content-space-between
           = link_to "もどる", root_path, class: "is-size-7"

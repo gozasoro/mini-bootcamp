@@ -3,9 +3,11 @@
     h1.logo Mini Bootcamp
     .columns.is-centered
       .column.is-8
-        p
-          | Mini Bootcampはブラウザ上で手軽にプログラミングテストにチャレンジできるサービスです。
-    = link_to "/auth/github", class: "button is-primary", method: :post do
+        p.has-text-left-mobile
+          | ブラウザ上で手軽に
+          br.is-hidden-mobile
+          | プログラミングテストにチャレンジ！
+    = link_to "/auth/github", class: "button", method: :post do
       span.icon.is-small
         i.fab.fa-github
       span GitHubでログイン

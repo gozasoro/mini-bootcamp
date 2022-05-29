@@ -22,7 +22,8 @@ section.section
                         i.fas.fa-check.is-size-7.has-text-success.mr-2
                       - else
                         i.fas.fa-minus.is-size-7.has-text-grey-lighter.mr-2
-                      = challenge.title
+                      span.challenge-title
+                        = challenge.title
                     - if current_user.admin
                       .buttons
                         button.button.is-light.is-small.handle

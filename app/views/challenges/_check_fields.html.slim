@@ -3,9 +3,9 @@
     .field
       = f.label :stdin, class: "label"
       .control
-        = f.text_area :stdin, class: "textarea has-fixed-size", rows: 2
+        = f.text_area :stdin, class: "textarea has-fixed-size", rows: 3
     .field
       = f.label :stdout, class: "label"
       .control
-        = f.text_area :stdout, class: "textarea has-fixed-size", rows: 2
+        = f.text_area :stdout, class: "textarea has-fixed-size", rows: 3
     = link_to_remove_association "チェックを削除", f, class: "delete"

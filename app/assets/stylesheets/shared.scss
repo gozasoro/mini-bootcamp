@@ -14,7 +14,7 @@ $gray: #4c4b4a;
 
 // Navbar
 nav.navbar {
-  border-bottom: 1px solid silver;
+  border-bottom: 1px solid dimgray;
   background: wheat;
   align-items: center;
 
@@ -42,5 +42,12 @@ nav.navbar {
     &:hover {
       color: $gray !important;
     }
+  }
+
+  .username {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 200px;
   }
 }
