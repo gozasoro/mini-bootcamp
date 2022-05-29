@@ -10,9 +10,9 @@
       button.button.is-fullwidth(@click="run" :class="isRunning ? 'is-loading' : ''")
         | コードを実行
 .code-container(v-if="checks[selected]")
-  code.stdin.mb-3(data-subtitle="標準入力") {{ checks[selected].stdin }}
-  code.stdout(data-subtitle="期待される出力") {{ checks[selected].stdout }}
-code.result(data-subtitle="実行結果" :class="codeResult ? codeResultClass : ''") {{ codeResult }}
+  code.code.stdin.mb-3(data-subtitle="標準入力") {{ checks[selected].stdin }}
+  code.code.stdout(data-subtitle="期待される出力") {{ checks[selected].stdout }}
+code.code.result(data-subtitle="実行結果" :class="codeResult ? codeResultClass : ''") {{ codeResult }}
 </template>
 
 <script>

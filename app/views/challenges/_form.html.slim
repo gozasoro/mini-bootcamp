@@ -13,7 +13,11 @@
     .field.column.is-6
       = f.label :content, class: "label"
       .control
-        = f.text_area :content, class: "textarea has-fixed-size", rows: 15
+        = f.text_area :content, class: "textarea has-fixed-size js-markdown-input", rows: 15
+    .field.column.is-6
+      .has-text-weight-bold.mb-2
+        | プレビュー
+      .content-preview#js-markdown-preview
   .columns
     .field.column.is-6
       = f.label :model_answer, class: "label"

@@ -13,7 +13,7 @@ h1.title.is-3
   .columns
     .column(style="white-space: pre-wrap")
       h5.title.is-5.mb-2 問題
-      | {{ challenge.content }}
+      #content
     .column
       Editor(
         ref="editor"
@@ -55,6 +55,7 @@ nav.level
 import { ref, reactive, computed, onMounted } from 'vue'
 import axios from 'axios'
 import { setHeaders } from './modules/set_headers'
+import MarkdownIt from 'markdown-it'
 
 import Editor from './components/Editor.vue'
 import Runner from './components/Runner.vue'
@@ -115,6 +116,9 @@ export default {
       previous.url = data.previous ? data.previous.url : null
       next.title = data.next ? data.next.title : null
       next.url = data.next ? data.next.url : null
+
+      const content = document.getElementById('content')
+      content.innerHTML = new MarkdownIt().render(challenge.content)
 
       data.checks.forEach((check, i) => {
         const checkWithIndex = { ...check, ...{ index: i } }

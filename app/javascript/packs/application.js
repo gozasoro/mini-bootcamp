@@ -8,6 +8,7 @@ import Rails from '@rails/ujs'
 import '../challenge.js'
 import '../sortable.js'
 import '../resize_textarea.js'
+import '../markdown.js'
 
 import 'cocoon-js-vanilla'
 

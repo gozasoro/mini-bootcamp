@@ -17,7 +17,7 @@ RSpec.describe "Categories", type: :system do
       visit root_path
       expect(page).to have_content category.name
       expect(page).to have_content challenge.title
-      expect(page).to have_no_content "新規プログラミングテスト"
+      expect(page).to have_no_content "問題を追加する"
       expect(page).to have_no_selector ".handle"
       expect(page).to have_no_selector ".edit"
     end
@@ -43,7 +43,7 @@ RSpec.describe "Categories", type: :system do
       visit root_path
       expect(page).to have_content category.name
       expect(page).to have_content challenge.title
-      expect(page).to have_content "新規プログラミングテスト"
+      expect(page).to have_content "問題を追加する"
       expect(page).to have_selector ".handle"
       expect(page).to have_selector ".edit"
     end

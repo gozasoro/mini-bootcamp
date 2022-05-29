@@ -39,7 +39,7 @@ $code-background: #faf2e4;
   }
 }
 
-code {
+.code {
   background: $code-background;
   font-size: 14px;
   display: block;
@@ -146,4 +146,12 @@ code {
     color: dimgray;
     border: 1px dashed;
   }
+}
+
+.content-preview {
+  background: white;
+  padding: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  white-space: pre-wrap;
 }
