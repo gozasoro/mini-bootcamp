@@ -65,10 +65,11 @@ hr {
     border: 1px solid dimgray;
   }
 
-  .button {
+  a.button {
     background: #3e3e3e;
     color: white;
     border: none;
+    text-decoration: none;
   
     &:hover {
       opacity: 0.9;
