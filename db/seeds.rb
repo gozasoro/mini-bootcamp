@@ -3,9 +3,9 @@
 category = Category.create!(name: "Ruby初級", docker_image: "ruby:3.0.2", editor_mode: "ace/mode/ruby", command: "ruby", extension: "rb")
 content = <<EOS
 標準入力である整数が与えられる。
-3の倍数のときはFizz
-5の倍数のときはBuzz
-15の倍数のときはFizzBuzz!
+3の倍数のときは`Fizz`
+5の倍数のときは`Buzz`
+15の倍数のときは`FizzBuzz!`
 それ以外のときは数字をそのまま出力するようなプログラムを作ってください!
 EOS
 model_answer = <<EOS
