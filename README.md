@@ -2,7 +2,7 @@
 Mini Bootcampはプログラミングスクール運営者向けのプログラミングテスト作成サービスです。
 受講生自身でプログラムの動作をチェック・確認ができるので、課題チェックの仕事を軽減します！
 
-[![Image from Gyazo](https://i.gyazo.com/061849a8eb0654a790ec42fa7fd5b6dd.gif)](https://gyazo.com/061849a8eb0654a790ec42fa7fd5b6dd)
+[![Image from Gyazo](https://i.gyazo.com/16f9a2fd9732f578f7f1019c72f8e698.gif)](https://gyazo.com/16f9a2fd9732f578f7f1019c72f8e698)
 
 ## インストール
 ```
