@@ -13,7 +13,7 @@ h1.title.is-3
   .columns
     .column(style="white-space: pre-wrap")
       h5.title.is-5.mb-2 問題
-      #content
+      #content.markdown-body
     .column
       Editor(
         ref="editor"
